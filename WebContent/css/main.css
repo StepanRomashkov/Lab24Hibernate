@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+body {
+	background-color: beige;
+}
+
+label {
+	display: block;
+	width: 200px;
+}
+
+.submit {
+	margin: 10px 0;
+}

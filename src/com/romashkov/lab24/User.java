@@ -1,5 +1,7 @@
 package com.romashkov.lab24;
 
+import org.jasypt.util.password.rfc2307.RFC2307SSHAPasswordEncryptor;
+
 public class User {
 	private int id;
 	private String username;
@@ -47,5 +49,14 @@ public class User {
 		this.fullName = fullName;
 	}
 	
+	public void encryptPassword() {
+		RFC2307SSHAPasswordEncryptor crypto = new RFC2307SSHAPasswordEncryptor();
+		setPassword(crypto.encryptPassword(getPassword()));
+	}
+	
+	public boolean checkUserPass(String plainPass, String encryptedPass) {
+		RFC2307SSHAPasswordEncryptor crypto = new RFC2307SSHAPasswordEncryptor();
+		return crypto.checkPassword(plainPass, encryptedPass);
+	}
 	
 }

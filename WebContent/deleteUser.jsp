@@ -11,10 +11,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Hibernate Example</title>
+<link type="text/css" rel="stylesheet" href="/LabNo24/css/main.css" />
+<title>Delete User Page</title>
 </head>
 <body>
-<h1>Hibernate Example: Product Listing</h1>
+<h1>List of users</h1>
 <jsp:useBean id="obj" class="com.romashkov.lab24.User">  
 </jsp:useBean>  
 <jsp:setProperty property="*" name="obj"/>

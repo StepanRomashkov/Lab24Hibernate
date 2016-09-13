@@ -22,9 +22,6 @@
 <table>
 
 <tr>
-	<th>User ID</th>
-	<th>Username</th>
-	<th>Email</th>
 	<th>Full Name</th>
 </tr>
 
@@ -32,15 +29,10 @@
 List<User> users = DAO.getAllUsers(); 
 
 for (User u: users) {
-	out.println ("<tr><td>" + u.getId() 
-		+ "</td><td>" + u.getUsername()
-		+ "</td><td>" + u.getEmail() 
-		+ "</td><td>" + u.getFullName()
-		+ "</td><td><a href=\"deleteUser.jsp?id=" 
-		+ u.getId()+ "\">Delete</a>"
+	out.println ("<tr><td>" + u.getFullName() 
 		+ "</td></tr>");
 }%>
 </table>
-<a href="adminPage.html">To admin page</a>
+<a href="index.html">To login page</a>
 </body>
 </html>

@@ -4,11 +4,20 @@
 <meta charset="UTF-8">
 <link type="text/css" rel="stylesheet" href="/LabNo24/css/main.css" />
 
-<title>Insert title here</title>
+<title>Login Screen</title>
 </head>
 <body>
-	<h1>Hello, mr.Admin!</h1>
-	<a href="newuser.html">Add a user</a><br>
-	<a href="listusers.jsp">List of users</a>
+	<h1>Hello! Please, sign in</h1>
+	<form action="authentification.jsp" method="post">
+		<label>Username: 
+			<input type="text" name="uName" />
+		</label>
+		<label>Password: 
+			<input type="password" name="uPass" />
+		</label>
+		<input type="submit" class="submit" name="Login" />
+	</form>
+	<a href="userListOfUsers.jsp">List of users</a>
+	<a href="newuser.html">Register</a>
 </body>
 </html>

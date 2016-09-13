@@ -6,41 +6,46 @@
 <%@ page import="com.romashkov.lab24.User"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
- 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="/LabNo24/css/main.css" />
-<title>List of victims</title>
+<title>Authentification</title>
 </head>
 <body>
-<h1>List of users</h1>
+
+<jsp:useBean id="login" class="com.romashkov.lab24.LoginInfo">
+</jsp:useBean>
+<jsp:setProperty property="*" name="login"/>
+
 <jsp:useBean id="obj" class="com.romashkov.lab24.User">
 </jsp:useBean>  
 <jsp:setProperty property="*" name="obj"/>
-<table>
-
-<tr>
-	<th>User ID</th>
-	<th>Username</th>
-	<th>Email</th>
-	<th>Full Name</th>
-</tr>
 
 <%
-List<User> users = DAO.getAllUsers(); 
+	List<User> users = DAO.getAllUsers();
+	
+	boolean loginCorrect = false;
+	for (User u: users) {
+		if (login.getuName().equals(u.getUsername())) {
+			loginCorrect = true;
+			if (u.checkUserPass(login.getuPass(), u.getPassword())) {
+				out.println("Logged in");
+				out.println("<a href=\"adminPage.html\">Proceed to admin page</a>");
+				break;
+			} else {
+				out.println("Password incorrect");
+				out.println("<a href=\"index.html\">Try again</a>");
+				break;	
+			}
+		}
+	}
+	if (!loginCorrect) {
+		out.println("Username not found");
+		out.println("<a href=\"index.html\">Try again</a>");
+	}
+%>
 
-for (User u: users) {
-	out.println ("<tr><td>" + u.getId() 
-		+ "</td><td>" + u.getUsername()
-		+ "</td><td>" + u.getEmail() 
-		+ "</td><td>" + u.getFullName()
-		+ "</td><td><a href=\"deleteUser.jsp?id=" 
-		+ u.getId()+ "\">Delete</a>"
-		+ "</td></tr>");
-}%>
-</table>
-<a href="adminPage.html">To admin page</a>
 </body>
 </html>

@@ -5,6 +5,8 @@
 <%@ page import="com.romashkov.lab24.DAO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ page import="com.romashkov.lab24.User"%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -18,16 +20,15 @@
 	<jsp:useBean id="obj" class="com.romashkov.lab24.User">
 	</jsp:useBean>
 	<jsp:setProperty property="*" name="obj"/>
+	
 	<%
-	
-	
-	
+		obj.encryptPassword();
 		int i=DAO.addUser(obj);
 		if (i > 0)
 			out.println("User successfully added");
 		else 
 			out.println("Something went wrong. User not added");
 	%>
-	<a href="listusers.jsp">List of users</a>
+	<a href="userListOfUsers.jsp">List of users</a>
 </body>
 </html>
